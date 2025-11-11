@@ -753,6 +753,7 @@ const ContentState = (props) => {
     shapeFill: false,
     pushToTalk: false,
     zoomEnabled: false,
+    clickZoomEnabled: false,
     offscreenRecording: false,
     isAddingImage: false,
     pipEnded: false,

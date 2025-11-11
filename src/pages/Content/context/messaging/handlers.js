@@ -369,11 +369,13 @@ export const setupHandlers = () => {
         onboarding: false,
         showProSplash: false,
         zoomEnabled: false,
+        clickZoomEnabled: false,
       }));
 
       chrome.storage.local.set({
         offscreenRecording: false,
         zoomEnabled: false,
+        clickZoomEnabled: false,
       });
     }
   });

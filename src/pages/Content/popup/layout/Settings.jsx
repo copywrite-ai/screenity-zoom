@@ -81,17 +81,27 @@ const Settings = () => {
           )}
         {contentState.recordingType != "camera" &&
           !contentState.isSubscribed && (
-            <Switch
-              label={
-                chrome.i18n.getMessage("zoomToPointPopup") +
-                " (" +
-                shortcut +
-                ")"
-              }
-              name="zoomEnabled"
-              value="zoomEnabled"
-              experimental={true}
-            />
+            <>
+              <Switch
+                label={
+                  chrome.i18n.getMessage("zoomToPointPopup") +
+                  " (" +
+                  shortcut +
+                  ")"
+                }
+                name="zoomEnabled"
+                value="zoomEnabled"
+                experimental={true}
+              />
+              {contentState.zoomEnabled && (
+                <Switch
+                  label={chrome.i18n.getMessage("clickToZoomPopup") || "Click to zoom"}
+                  name="clickZoomEnabled"
+                  value="clickZoomEnabled"
+                  experimental={true}
+                />
+              )}
+            </>
           )}
       </Collapsible.Content>
     </Collapsible.Root>
