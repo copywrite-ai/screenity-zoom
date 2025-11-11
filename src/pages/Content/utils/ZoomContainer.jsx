@@ -41,8 +41,8 @@ const ZoomContainer = () => {
 
   
   const handleClick = (e) => {
-    // Skip if zoom is not enabled or click zoom is not enabled
-    if (!contentStateRef.current.zoomEnabled || !contentStateRef.current.clickZoomEnabled) return;
+    // Skip if zoom is not enabled or click zoom is not enabled, or if we're recording
+    if (!contentStateRef.current.zoomEnabled || !contentStateRef.current.clickZoomEnabled || contentStateRef.current.recording) return;
 
     // If click zoom is already active, check if this click should deactivate it
     if (isClickZoomActiveRef.current) {
@@ -325,16 +325,27 @@ const ZoomContainer = () => {
   };
 
   useEffect(() => {
+    // Only add click listener if both zoom and click zoom are enabled, and we're not recording
+    const shouldAddClickListener = contentState.zoomEnabled &&
+                                 contentState.clickZoomEnabled &&
+                                 !contentState.recording;
+
     window.addEventListener("keydown", handleKeyDown);
     window.addEventListener("keyup", handleKeyUp);
     window.addEventListener("mousemove", handleMouseMove);
-    window.addEventListener("click", handleClick, true);
+
+    if (shouldAddClickListener) {
+      window.addEventListener("click", handleClick, true);
+    }
 
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
       window.removeEventListener("keyup", handleKeyUp);
       window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("click", handleClick, true);
+
+      if (shouldAddClickListener) {
+        window.removeEventListener("click", handleClick, true);
+      }
 
       // Clean up click zoom timeout on unmount
       if (clickZoomTimeoutRef.current) {
@@ -344,7 +355,7 @@ const ZoomContainer = () => {
       // Clean up indicator on unmount
       hideClickZoomIndicator();
     };
-  }, [contentState.zoomEnabled, contentState.clickZoomEnabled, contentState.showExtension]);
+  }, [contentState.zoomEnabled, contentState.clickZoomEnabled, contentState.showExtension, contentState.recording]);
 
   useEffect(() => {
     if (!contentState.zoomEnabled) return;
