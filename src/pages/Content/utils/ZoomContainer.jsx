@@ -41,8 +41,9 @@ const ZoomContainer = () => {
 
   
   const handleClick = (e) => {
-    // Skip if zoom is not enabled or click zoom is not enabled, or if we're recording
-    if (!contentStateRef.current.zoomEnabled || !contentStateRef.current.clickZoomEnabled || contentStateRef.current.recording) return;
+    // Skip if zoom is not enabled or click zoom is not enabled
+    // Allow zoom during recording - it's a useful feature for annotating recordings
+    if (!contentStateRef.current.zoomEnabled || !contentStateRef.current.clickZoomEnabled) return;
 
     // If click zoom is already active, check if this click should deactivate it
     if (isClickZoomActiveRef.current) {
@@ -325,10 +326,10 @@ const ZoomContainer = () => {
   };
 
   useEffect(() => {
-    // Only add click listener if both zoom and click zoom are enabled, and we're not recording
+    // Add click listener if both zoom and click zoom are enabled
+    // Allow zoom during recording - it's useful for annotating recordings
     const shouldAddClickListener = contentState.zoomEnabled &&
-                                 contentState.clickZoomEnabled &&
-                                 !contentState.recording;
+                                 contentState.clickZoomEnabled;
 
     window.addEventListener("keydown", handleKeyDown);
     window.addEventListener("keyup", handleKeyUp);
