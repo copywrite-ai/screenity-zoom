@@ -177,19 +177,23 @@ const ZoomContainer = () => {
       position: fixed;
       top: 20px;
       right: 20px;
-      background: rgba(0, 0, 0, 0.8);
+      background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
       color: white;
-      padding: 10px 15px;
-      border-radius: 8px;
+      padding: 12px 18px;
+      border-radius: 16px;
       font-size: 14px;
+      font-weight: 500;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       z-index: 999999;
       pointer-events: none;
-      transition: opacity 0.3s ease;
+      transition: all 0.3s ease;
+      box-shadow: 0px 8px 32px rgba(0, 0, 0, 0.12);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
     `;
     indicator.innerHTML = `
-      🔍 点击缩放已激活<br>
-      <small>再次点击或按 ESC 退出</small>
+      🔍 ${chrome.i18n.getMessage("clickZoomActivated") || "Click zoom activated"}<br>
+      <small style="opacity: 0.9; font-weight: 400;">${chrome.i18n.getMessage("clickToZoomHint") || "Click again or press ESC to exit"}</small>
     `;
 
     document.body.appendChild(indicator);

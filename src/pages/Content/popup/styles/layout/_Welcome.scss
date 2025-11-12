@@ -93,7 +93,7 @@
   width: 100%;
 }
 .video-wrapper {
-  border-radius: 10px;
+  border-radius: calc($container-border-radius - 6px);
 }
 .welcome-support {
   font-family: $font-medium;

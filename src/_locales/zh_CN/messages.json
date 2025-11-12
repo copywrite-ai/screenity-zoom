@@ -627,6 +627,14 @@
     "message": "缩放到光标位置",
     "description": "Zoom to point popup"
   },
+  "clickZoomActivated": {
+    "message": "点击缩放已激活",
+    "description": "Click zoom activated message"
+  },
+  "clickToZoomHint": {
+    "message": "再次点击或按 ESC 退出",
+    "description": "Click zoom exit hint"
+  },
   "stayInPagePopup": {
     "message": "录制时保持在页面中",
     "description": "Stay in page popup"

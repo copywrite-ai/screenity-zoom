@@ -627,6 +627,14 @@
     "message": "Zoom to cursor",
     "description": "Zoom to point popup"
   },
+  "clickZoomActivated": {
+    "message": "Click zoom activated",
+    "description": "Click zoom activated message"
+  },
+  "clickToZoomHint": {
+    "message": "Click again or press ESC to exit",
+    "description": "Click zoom exit hint"
+  },
   "stayInPagePopup": {
     "message": "Stay in the page when recording",
     "description": "Stay in page popup"
